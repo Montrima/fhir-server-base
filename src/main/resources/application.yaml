@@ -1,0 +1,42 @@
+app:
+  validation:
+    enabled: false
+    package: classpath:fhir/nordic-epi-0_1_0.tgz
+  openapi: true
+
+server:
+  port: 8080
+
+hapi:
+  fhir:
+    version: r4
+    server:
+      url: http://localhost:8080/fhir
+      path: /fhir/*
+    rest:
+      server-name: hapi-fhir-demo
+      server-version: 1.0.0
+      implementation-description: Montrima demo server
+      default-response-encoding: json
+      e-tag-support: enabled
+      default-pretty-print: true
+
+management:
+  security:
+    enabled: false
+
+logging:
+  level:
+    ca.uhn.fhir.jaxrs: debug
+
+spring:
+  data:
+    mongodb:
+      database: fhir_demo
+      host: localhost
+      username: fhir
+      password: fhir123
+      port: 37017
+      auto-index-creation: true
+      repositories:
+        type: auto
